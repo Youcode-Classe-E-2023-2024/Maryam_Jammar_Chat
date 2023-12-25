@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../../../public/assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="../../../public/assets/img/favicon.png" />
-    <title>Soft UI Dashboard Tailwind</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- Fonts and icons -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Nucleo Icons -->
@@ -19,64 +17,98 @@
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
-<div class="font-sans antialiased bg-grey-lightest">
-    <!-- Top Nav -->
-    <div class="w-full bg-green fixed shadow z-1">
-        <div class="container mx-auto">
-            <div class="w-full flex justify-between items-center py-4 px-8">
-                <!-- Brand -->
-                <div class="text-center text-white font-bold">Your Company</div>
-                <!-- Navigation -->
-                <div class="items-center hidden sm:flex">
-                    <a href="#" class="text-white hover:text-green-lightest no-underline mx-2 px-2 py-2">Link 1</a>
-                    <a href="#" class="text-white hover:text-green-lightest no-underline mx-2 px-2 py-2">Link 2</a>
-                    <a href="#" class="bg-green-dark hover:bg-green-darker rounded-full text-white no-underline mx-2 px-4 py-2">Link 3</a>
+<div class="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
+    <div
+            class="flex flex-col overflow-hidden bg-white rounded-lg shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md"
+    >
+
+        <div class="p-5 bg-white md:flex-1">
+            <h3 class="my-4 text-2xl font-semibold text-gray-700 text-center">Account Register</h3>
+            <form action="#" method="" class="flex flex-col space-y-5">
+                <div class="flex flex-col space-y-1">
+                    <label for="picture" class="text-sm font-semibold text-gray-500">Picture </label>
+                    <input
+                            name="picture"
+                            type="file"
+                            id="picture"
+                            autofocus
+                            class="px-4 py-2 transition duration-300 rounded"
+                    />
                 </div>
-            </div>
+                <div class="flex flex-col space-y-1">
+                    <label for="username" class="text-sm font-semibold text-gray-500">Username</label>
+                    <input
+                            name="username"
+                            type="text"
+                            id="username"
+                            autofocus
+                            class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                    />
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <label for="email" class="text-sm font-semibold text-gray-500">Email</label>
+                    <input
+                            name="email"
+                            type="email"
+                            id="email"
+                            autofocus
+                            class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                    />
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <div class="flex items-center justify-between">
+                        <label for="password" class="text-sm font-semibold text-gray-500">Password</label>
+                    </div>
+                    <input
+                            name="password"
+                            type="password"
+                            id="password"
+                            class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                    />
+                </div>
+
+                <div class="flex flex-col space-y-1">
+                    <div class="flex items-center justify-between">
+                        <label for="c_password" class="text-sm font-semibold text-gray-500">Confirm Password</label>
+                    </div>
+                    <input
+                            name="c_password"
+                            type="password"
+                            id="c_password"
+                            class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                    />
+                </div>
+
+
+                <div>
+                    <button
+                            name = "login"
+                            type="submit"
+                            class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-900 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                    >
+                        Sign up
+                    </button>
+                </div>
+            </form>
         </div>
-    </div>
-    <!-- Content -->
-    <div class="w-full bg-grey-lightest" style="padding-top: 4rem;">
-        <div class="container mx-auto py-8">
-            <div class="w-5/6 lg:w-1/2 mx-auto bg-white rounded shadow">
-                <div class="py-4 px-8 text-black text-xl border-b border-grey-lighter">Register for a free account</div>
-                <div class="py-4 px-8">
-                    <div class="flex mb-4">
-                        <div class="w-1/2 mr-1">
-                            <label class="block text-grey-darker text-sm font-bold mb-2" for="first_name">First Name</label>
-                            <input class="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="first_name" type="text" placeholder="Your first name">
-                        </div>
-                        <div class="w-1/2 ml-1">
-                            <label class="block text-grey-darker text-sm font-bold mb-2" for="last_name">Last Name</label>
-                            <input class="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="last_name" type="text" placeholder="Your last name">
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-grey-darker text-sm font-bold mb-2" for="email">Email Address</label>
-                        <input class="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="email" type="email" placeholder="Your email address">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-grey-darker text-sm font-bold mb-2" for="password">Password</label>
-                        <input class="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="password" type="password" placeholder="Your secure password">
-                        <p class="text-grey text-xs mt-1">At least 6 characters</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-8">
-                        <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" type="submit">
-                            Sign Up
-                        </button>
-                    </div>
-                </div>
+        <div
+                class="p-4 py-6 text-white bg-blue-900 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly"
+        >
+            <div class="my-3 text-4xl font-bold tracking-wider text-center">
+                <a>Avito</a>
             </div>
-            <p class="text-center my-4">
-                <a href="login_view.php" class="text-grey-dark text-sm no-underline hover:text-grey-darker">I already have an account</a>
+            <!--<p class="mt-6 font-normal text-center text-gray-300 md:mt-0">
+                With the power of K-WD, you can now focus only on functionaries for your digital products, while leaving the
+                UI design on us!
+
+            </p>-->
+            <p class="flex flex-col items-center justify-center mt-10 text-center">
+                <span>Already have an account?</span>
+                <a href="login_view.php" class="underline">Login!</a>
             </p>
+
         </div>
     </div>
-    <!-- Footer -->
-    <footer class="w-full bg-grey-lighter py-8">
-        <div class="container mx-auto text-center px-8">
-            <p class="text-grey-dark mb-2 text-sm">This is a product of <span class="font-bold">Your Company</span></p>
-        </div>
-    </footer>
-</div><!-- plugin for scrollbar  -->
+</div>
+<!-- plugin for scrollbar  -->
 </html>
