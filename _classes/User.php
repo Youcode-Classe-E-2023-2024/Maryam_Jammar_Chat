@@ -1,40 +1,51 @@
 <?php
-
-class User
+include_once 'Database.php';
+class User extends Database
 {
-    public $id;
-    public $email;
+    public $user_id;
+    public $picture;
     public $username;
+    public $email;
     private $password;
 
-    public function __construct($id)
-    {
-        global $db;
+    public function register($picture, $username, $email, $pwd){
+        if($this->isEmailUnique($email)){
+            $this->query('INSERT INTO users(username, picture, email, pwd) VALUES (:username, :picture, :email, :pwd)');
+            $this->bind(':username', $username);
+            $this->bind(':picture', $picture);
+            $this->bind(':email', $email);
+            $this->bind(':pwd', $pwd);
+            $this->execute();
+        } else {
+            echo "Email déja existé";
+        }
 
-        $result = $db->query("SELECT * FROM users WHERE users_id = '$id'");
-        $user = $result->fetch_assoc();
-
-        $this->id = $user['users_id'];
-        $this->email = $user['users_email'];
-        $this->username = $user['users_username'];
-        $this->password = $user['users_password'];
     }
 
-    static function getAll()
-    {
-        global $db;
-        $result = $db->query("SELECT * FROM users");
-        return $result->fetch_all(MYSQLI_ASSOC);
+    public function login($email, $password){
+        $this->query('SELECT * FROM users WHERE email = :email and password = :pwd');
+        $this->bind(':email', $email);
+        $this->bind(':pwd', $password);
+        $row = $this->single();
+        if(is_null($row)){
+            return false;
+        }else {
+            return $row;
+        }
     }
 
-    function edit()
-    {
-        global $db;
-        return $db->query("UPDATE users SET users_email = '$this->email', users_username = '$this->username' WHERE users_id = '$this->id'");
+    public function isEmailUnique($email){
+        $this->query('SELECT email FROM users WHERE email = :email');
+        $this->bind(':email', $email);
+        $row = $this->single();
+        if(is_null($row)){
+            return true;
+        }else {
+            return false;
+        }
     }
 
-    public function setPassword($pwd)
-    {
-        $this->password = password_hash($pwd, PASSWORD_DEFAULT);
-    }
+
 }
+$user = new User();
+
