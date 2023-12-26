@@ -48,7 +48,32 @@ class User extends Database
             return false;
         }
     }
-    
+
+    public function edit($picture, $username, $email, $password, $user_id){
+            $this->query("UPDATE users 
+                            SET picture = :picture, 
+                                username = :username,
+                                email = :email,
+                                password = :passowrd
+                            WHERE user_id = :user_id");
+            $this->bind(':username', $username);
+            $this->bind(':picture', $picture);
+            $this->bind(':email', $email);
+            $this->bind(':password', $password);
+            $this->bind(':user_id', $user_id);
+
+            $this->execute();
+    }
+
+    public function delete($user_id){
+        $this->query("DELETE FROM users WHERE user_id = :user_id");
+        $this->bind(':user_id', $user_id);
+
+        $this->execute();
+    }
+
+
+
 }
 $user = new User();
 
