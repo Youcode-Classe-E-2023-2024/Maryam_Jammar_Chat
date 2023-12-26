@@ -6,7 +6,7 @@ include_once '_functions/functions.php';
 // dd($_SERVER['PHP_SELF']);
 
 spl_autoload_register(function ($class) {
-    require '_classes/' . $class . '.php';
+    require 'models/' . $class . '.php';
 });
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {

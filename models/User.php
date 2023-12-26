@@ -8,29 +8,33 @@ class User extends Database
     public $email;
     private $password;
 
-    public function register($picture, $username, $email, $pwd){
+    public function register($picture, $username, $email, $password){
         if($this->isEmailUnique($email)){
-            $this->query('INSERT INTO users(username, picture, email, pwd) VALUES (:username, :picture, :email, :pwd)');
+            $this->query('INSERT INTO users(username, picture, email, password) VALUES (:username, :picture, :email, :password)');
             $this->bind(':username', $username);
             $this->bind(':picture', $picture);
             $this->bind(':email', $email);
-            $this->bind(':pwd', $pwd);
+            $this->bind(':password', $password);
             $this->execute();
         } else {
-            echo "Email déja existé";
+            throw new Exception('Email already exist !');
         }
 
     }
 
     public function login($email, $password){
-        $this->query('SELECT * FROM users WHERE email = :email and password = :pwd');
+        $this->query('SELECT * FROM users WHERE email = :email');
         $this->bind(':email', $email);
-        $this->bind(':pwd', $password);
         $row = $this->single();
-        if(is_null($row)){
-            return false;
+        if(!empty($row)){
+            $hashedPassword = $row['password'];
+            if (password_verify($password, $hashedPassword)){
+                return $row;
+            }else{
+                throw new Exception('Password inccorect !');
+            }
         }else {
-            return $row;
+            throw new Exception('Account not exist !');
         }
     }
 
@@ -38,14 +42,13 @@ class User extends Database
         $this->query('SELECT email FROM users WHERE email = :email');
         $this->bind(':email', $email);
         $row = $this->single();
-        if(is_null($row)){
+        if(empty($row)){
             return true;
-        }else {
+        } else {
             return false;
         }
     }
-
-
+    
 }
 $user = new User();
 

@@ -1,11 +1,10 @@
 <?php
-include_once '../_config/config.php';
 class Database
 {
-    private $dbName = DB_NAME;
-    private $dbHost = DB_HOST;
-    private $dbUser = DB_USER;
-    private $dbPass = DB_PASS;
+    private $dbName = 'chat_room';
+    private $dbHost = 'localhost';
+    private $dbUser = 'root';
+    private $dbPass = '';
 
     protected $dbh;
     protected $stmt;
