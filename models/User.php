@@ -26,7 +26,8 @@ class User extends Database
         $this->query('SELECT * FROM users WHERE email = :email');
         $this->bind(':email', $email);
         $row = $this->single();
-        if(!empty($row)){
+
+        if(!empty($row) && !is_null($row)){
             $hashedPassword = $row['password'];
             if (password_verify($password, $hashedPassword)){
                 return $row;
@@ -49,7 +50,23 @@ class User extends Database
         }
     }
 
+    public function getUsers(){
+        $this->query("SELECT * FROM users");
+        $users = $this->multiple();
+        return $users;
+    }
+
     public function edit($picture, $username, $email, $password, $user_id){
+            $this->getUsers();
+            foreach ($users as $user) {
+                if($users['user_id'] === $_SESSION['user_id']){
+                    $picture = $user['picture'];
+                    $username = $user['username'];
+                    $email = $user['email'];
+                    $password = $user['password'];
+                }
+            }
+
             $this->query("UPDATE users 
                             SET picture = :picture, 
                                 username = :username,
@@ -74,6 +91,7 @@ class User extends Database
 
 
 
+
 }
-$user = new User();
+$userO1 = new User();
 

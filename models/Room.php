@@ -6,13 +6,26 @@ class Room extends Database
     public $name_room;
     public $creator;
 
-    public function create_room($room_name, $creator){
-        $this->query("INSERT INTO room(room_name, creator) VALUES (:room_name, :creator)");
+    /**
+     * @return mixed
+     */
+    public function getRooms(){
+        $this->query('SELECT * FROM room');
+        return $this->multiple();
+    }
+
+    /**
+     * @param $room_name
+     * @param $creator
+     * @return void
+     */
+    public function create_room($room_profile, $room_name, $creator){
+        $this->query("INSERT INTO room(room_profile, room_name, creator) VALUES (:room_profil, :room_name, :creator)");
+        $this->bind(':room_profile', $room_profile);
         $this->bind(':room_name', $room_name);
         $this->bind(':creator', $creator);
 
         $this->execute();
-
     }
 
     public function edit_room($room_name, $creator, $room_id){
@@ -38,3 +51,4 @@ class Room extends Database
     }
 
 }
+$roomO = new Room();
