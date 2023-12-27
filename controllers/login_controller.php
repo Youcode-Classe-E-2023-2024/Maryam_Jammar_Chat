@@ -1,6 +1,9 @@
 <?php
+if (file_exists("models/User.php"))
+    include_once "models/User.php";
 
-global $user, $row;
+$user = new User();
+global $row;
 if(isset($_POST['login'])){
     extract($_POST);
     echo $email;

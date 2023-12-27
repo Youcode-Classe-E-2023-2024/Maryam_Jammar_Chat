@@ -1,6 +1,7 @@
 <?php
-
-global $user;
+if (file_exists("models/User.php"))
+    include_once "models/User.php";
+$user = new User();
 if (isset($_POST['register'])) {
     $picture = $_POST['picture'];
     $username = $_POST['username'];
