@@ -34,13 +34,13 @@
             </p>-->
             <p class="flex flex-col items-center justify-center mt-10 text-center">
                 <span>Don't have an account?</span>
-                <a href="register_view.php" class="underline">Get Started!</a>
+                <a href="index.php?page=register" class="underline">Get Started!</a>
             </p>
 
         </div>
         <div class="p-5 bg-white md:flex-1">
             <h3 class="my-4 text-2xl font-semibold text-gray-700 text-center">Account Login</h3>
-            <form action="../controllers/login_controller.php" method="post" class="flex flex-col space-y-5">
+            <form action="index.php?page=login" method="post" class="flex flex-col space-y-5">
                 <div class="flex flex-col space-y-1">
                     <label for="email" class="text-sm font-semibold text-gray-500">Email address</label>
                     <input

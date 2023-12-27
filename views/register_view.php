@@ -24,7 +24,7 @@
 
         <div class="p-5 bg-white md:flex-1">
             <h3 class="my-4 text-2xl font-semibold text-gray-700 text-center">Account Register</h3>
-            <form action="../controllers/register_controller.php" method="post" class="flex flex-col space-y-5">
+            <form action="index.php?page=register" method="post" class="flex flex-col space-y-5">
                 <div class="flex flex-col space-y-1">
                     <label for="picture" class="text-sm font-semibold text-gray-500">Picture </label>
                     <input
@@ -104,7 +104,7 @@
             </p>-->
             <p class="flex flex-col items-center justify-center mt-10 text-center">
                 <span>Already have an account?</span>
-                <a href="login_view.php" class="underline">Login!</a>
+                <a href="index.php?page=login" class="underline">Login!</a>
             </p>
 
         </div>

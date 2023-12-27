@@ -2,12 +2,17 @@
 
 include_once '_config/config.php';
 include_once '_functions/functions.php';
+include_once 'models/Database.php';
+include_once 'models/User.php';
+include_once 'models/Room.php';
+
 
 // dd($_SERVER['PHP_SELF']);
 
-spl_autoload_register(function ($class) {
+spl_autoload_register(
+    function ($class) {
     require 'models/' . $class . '.php';
-});
+    });
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $page = trim(strtolower($_GET['page']));

@@ -8,12 +8,12 @@
           <p class="text-lg text-gray-600 mb-12">
           Connectez-vous ou inscrivez-vous pour accéder au chat room.
                   </p>
-          <a href="./views/login_view.php">
+          <a href="index.php?page=login">
             <button  class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
 
           </a>
 
-          <a href="./views/register_view.php">
+          <a href=".index.php?page=register">
             <button class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Register</button>
 
           </a>

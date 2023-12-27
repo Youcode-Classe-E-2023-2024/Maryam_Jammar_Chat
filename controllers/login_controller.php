@@ -1,20 +1,22 @@
 <?php
-include_once '../models/User.php';
-session_start();
+
 global $user, $row;
 if(isset($_POST['login'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    extract($_POST);
+    echo $email;
+    try {
+        if ($user->login($email, $password)) {
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['picture'] = $row['picture'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['password'] = $row['password'];
 
-    if ($user->login($email, $password)){
-        $_SESSION['picture'] = $row['picture'];
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['password'] = $row['password'];
-
-        header('Location: ../views/room_view.php');
+            header('Location: index.php?page=room');
+        }
+    } catch (Exception $e) {
+        header("Location: index.php?error={$e->getMessage()}&&page=login");
     }
-
 
 
 }

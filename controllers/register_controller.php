@@ -1,5 +1,5 @@
 <?php
-include_once '../models/User.php';
+
 global $user;
 if (isset($_POST['register'])) {
     $picture = $_POST['picture'];
@@ -10,15 +10,15 @@ if (isset($_POST['register'])) {
 
     try {
         if ($password != $c_password) {
-            header("Location: ../views/register_view.php?error=passwordDon'tMatch");
+            header("Location: index.php?page=register");
         } else {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $user->register($picture, $username, $email, $hashed_password);
             // Redirect or do something on successful registration
-            header("Location: ../views/login_view.php");
+            header("Location: index.php?page=login");
         }
     } catch (Exception $e) {
         // Handle the exception (e.g., log it, redirect the user, show an error message)
-        header("Location: ../views/register_view.php?error=" . urlencode($e->getMessage()));
+        header("Location: index.php?page=register");
     }
 }
