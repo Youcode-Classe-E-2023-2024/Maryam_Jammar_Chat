@@ -6,6 +6,7 @@ include_once 'models/Database.php';
 include_once 'models/User.php';
 include_once 'models/Room.php';
 
+//dd($_SESSION['user_id']);
 
 // dd($_SERVER['PHP_SELF']);
 

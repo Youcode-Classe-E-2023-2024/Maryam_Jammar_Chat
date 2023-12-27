@@ -26,6 +26,7 @@ class Room extends Database
         $this->bind(':creator', $creator);
 
         $this->execute();
+        return $this->lastInsertId();
     }
 
     public function edit_room($room_name, $creator, $room_id){
@@ -50,5 +51,12 @@ class Room extends Database
         $this->execute();
     }
 
+    public function insertMembers($user_id, $room_id){
+        $this->query('INSERT INTO room_member(user_id, room_id) VALUES (:user_id, :room_id)');
+        $this->bind(':user_id', $user_id);
+        $this->bind(':room_id', $room_id);
+
+        $this->execute();
+    }
 }
 $roomO = new Room();

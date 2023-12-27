@@ -78,7 +78,7 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form class="p-4 md:p-5" action="index.php?page=room" method="post">
+                    <form class="p-4 md:p-5" action="index.php?page=createroom" method="post">
                         <div class="grid gap-4 mb-4 grid-cols-1">
                             <div class="flex-col">
                                 <div class="">
@@ -94,8 +94,8 @@
 
 
                             <div class="md:col-span-5 py-4">
-                                <label for="creator">Members</label>
-                                <select name="creator[]" id="creator" multiple required>
+                                <label for="members">Members</label>
+                                <select name="members[]" id="members" multiple required>
                                     <?php global $userO1;
                                      $users = $userO1->getUsers();
                                      foreach ($users as $user) :?>
@@ -321,8 +321,8 @@
     x.addEventListener('click', hide);
 </script>
 <script>
-
-    new MultiSelectTag('creator', {
+    // multi select
+    new MultiSelectTag('members', {
         rounded: true, // default true
         shadow: true, // default false
         placeholder: 'Search', // default Search...
@@ -336,6 +336,7 @@
         }
     }) // id
 
+    // room name
     document.querySelectorAll('.room-image').forEach((room) => {
         const roomPopup = room.querySelector('.room-popup');
 
