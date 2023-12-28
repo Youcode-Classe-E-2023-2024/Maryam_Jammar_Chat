@@ -15,18 +15,20 @@ class Room extends Database
     }
 
     /**
+     * @param $room_profile
      * @param $room_name
      * @param $creator
-     * @return void
+     * @return mixed
      */
     public function create_room($room_profile, $room_name, $creator){
-        $this->query("INSERT INTO room(room_profile, room_name, creator) VALUES (:room_profil, :room_name, :creator)");
-        $this->bind(':room_profile', $room_profile);
+        $this->query("INSERT INTO room(room_name, creator, room_profile) VALUES (:room_name, :creator, :room_profile)");
         $this->bind(':room_name', $room_name);
         $this->bind(':creator', $creator);
+        $this->bind(':room_profile', $room_profile);
 
         $this->execute();
-        return $this->lastInsertId();
+        return $this->dbh->lastInsertId();
+
     }
 
     public function edit_room($room_name, $creator, $room_id){
@@ -58,5 +60,19 @@ class Room extends Database
 
         $this->execute();
     }
+
+    /**
+     * @return mixed
+     */
+    public function selectMembers($user_id){
+        $this->query("select * from room_member
+                            inner join users on users.user_id = room_member.user_id
+                            inner join room on room.room_id = room_member.room_id
+                            where room_member.room_id = room.room_id;
+    ");
+        $this->bind(':user_id', $user_id);
+        return $this->multiple();
+    }
 }
+
 $roomO = new Room();

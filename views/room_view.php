@@ -14,11 +14,11 @@
 
 <div class="font-sans antialiased h-screen flex">
     <!-- Sidebar / channel list -->
-    <div class="bg-gray-900 text-purple-lighter flex-none w-24 p-6 hidden md:block">
+    <div class="bg-gray-900 text-purple-lighter flex-none w-24 p-6 hidden md:block" href="index.php?page=profile">
         <div class="cursor-pointer mb-4 border-b border-gray-600 pb-2">
             <div
                 class="bg-white h-12 w-12 flex items-center justify-center text-black text-2xl font-semibold rounded-3xl mb-1 overflow-hidden">
-                <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="">
+                <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="" >
             </div>
         </div>
 
@@ -31,8 +31,11 @@
         <div class="room-image cursor-pointer mb-4 rounded-full">
             <div
                 class=" bg-white h-12 w-12 flex items-center justify-center text-black text-2xl font-semibold rounded-3xl mb-1">
-                <img class=" rounded-full" src="<?php echo $room['room_profile'] ?>"
-                >
+                <form method="post" action="">
+                    <button type="submit" name="submit" value="<?php $room['room_id'] ?>"><img class=" rounded-full" src="<?php echo $room['room_profile'] ?>"></button>
+
+                </form>
+
                 <div  class="room-popup bg-white hidden absolute p-2 text-black text-sm font-semibold rounded shadow-md -mt-10 -ml-2" style="left: 20px;">
                     <?php echo $room['room_name'] ?>
                 </div>
@@ -68,7 +71,7 @@
                     <!-- Modal header -->
                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Add New Room
+                            Add New Room ?>
                         </h3>
                         <button type="button" id="x" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -77,8 +80,8 @@
                             <span class="sr-only">Close modal</span>
                         </button>
                     </div>
-                    <!-- Modal body -->
-                    <form class="p-4 md:p-5" action="index.php?page=createroom" method="post">
+                    <!-- Add room  -->
+                    <form class="p-4 md:p-5" action="index.php?page=room" method="post">
                         <div class="grid gap-4 mb-4 grid-cols-1">
                             <div class="flex-col">
                                 <div class="">
@@ -105,7 +108,7 @@
                             </div>
 
                         </div>
-                        <button name="submit" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button name="insertMembers" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
                             Add new product
                         </button>
@@ -113,11 +116,9 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
+
+
     <div class="bg-gray-800 text-purple-lighter flex-none w-64 pb-6 hidden md:block">
         <div
             class="text-white mb-2 mt-3 px-4 flex justify-between border-b border-gray-600 py-1 shadow-xl">
@@ -135,7 +136,7 @@
         </div>
         <div class="mb-8">
             <div class="px-4 mb-2 text-white flex justify-between items-center">
-                <div class="opacity-75 cursor-pointer">GENERAL</div>
+                <div class="opacity-75 cursor-pointer">Room Admin</div>
                 <div>
                     <svg class="fill-current h-5 w-5 opacity-50 cursor-pointer"
                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -145,11 +146,11 @@
                 </div>
             </div>
             <div class="bg-teal-dark cursor-pointer font-semibold py-1 px-4 text-gray-300">#
-                general</div>
+                <?php echo $user['username']; ?></div>
         </div>
         <div class="mb-8">
             <div class="px-4 mb-2 text-white flex justify-between items-center">
-                <div class="opacity-75 cursor-pointer">VOICE</div>
+                <div class="opacity-75 cursor-pointer">Friends</div>
                 <div>
                     <svg class="fill-current h-5 w-5 opacity-50 cursor-pointer"
                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -160,7 +161,13 @@
             </div>
             <div
                 class="bg-teal-dark hover:bg-gray-800 cursor-pointer font-semibold py-1 px-4 text-gray-300">
-                ? General</div>
+                <?php global $room_members;
+                    foreach ($room_members as $room_member){
+                        echo $room_member['username']. '<br>';
+
+                    }
+                ?>
+            </div>
         </div>
     </div>
     <!-- Chat content -->
@@ -169,7 +176,7 @@
         <div class="border-b border-gray-600 flex px-6 py-2 items-center flex-none shadow-xl">
             <div class="flex flex-col">
                 <h3 class="text-white mb-1 font-bold text-xl text-gray-100">
-                    <span class="text-gray-400">#</span> general</h3>
+                    <span class="text-gray-400">#</span> <?php echo $room['room_name']; ?> </h3>
             </div>
         </div>
         <!-- Chat messages -->
@@ -199,79 +206,7 @@
                 </div>
             </div>
             <!-- A message -->
-            <!-- A message -->
-            <div class="border-b border-gray-600 py-3 flex items-start mb-4 text-sm">
-                <img src="https://cdn.discordapp.com/embed/avatars/0.png" class="cursor-pointer w-10 h-10 rounded-3xl mr-3">
-                <div class="flex-1 overflow-hidden">
-                    <div>
-                        <span class="font-bold text-red-300 cursor-pointer hover:underline">User</span>
-                        <span class="font-bold text-gray-400 text-xs">10:30</span>
-                    </div>
-                    <p class="text-white leading-normal">Discord is awesome!</p>
-                </div>
-            </div>
-            <!-- A message -->
-            <!-- A message -->
-            <div class="border-b border-gray-600 py-3 flex items-start mb-4 text-sm">
-                <img src="https://cdn.discordapp.com/embed/avatars/1.png" class="cursor-pointer w-10 h-10 rounded-3xl mr-3">
-                <div class="flex-1 overflow-hidden">
-                    <div>
-                        <span class="font-bold text-red-300 cursor-pointer hover:underline">User</span>
-                        <span class="font-bold text-gray-400 text-xs">10:50</span>
-                    </div>
-                    <p class="text-white leading-normal">Discord is awesome!</p>
-                </div>
-            </div>
-            <!-- A message -->
-            <!-- A message -->
-            <div class="border-b border-gray-600 py-3 flex items-start mb-4 text-sm">
-                <img src="https://cdn.discordapp.com/embed/avatars/2.png" class="cursor-pointer w-10 h-10 rounded-3xl mr-3">
-                <div class="flex-1 overflow-hidden">
-                    <div>
-                        <span class="font-bold text-red-300 cursor-pointer hover:underline">User</span>
-                        <span class="font-bold text-gray-400 text-xs">11:30</span>
-                    </div>
-                    <p class="text-white leading-normal">Discord is awesome!</p>
-                </div>
-            </div>
-            <!-- A message -->
-            <!-- A message -->
-            <div class="border-b border-gray-600 py-3 flex items-start mb-4 text-sm">
-                <img src="https://cdn.discordapp.com/embed/avatars/3.png" class="cursor-pointer w-10 h-10 rounded-3xl mr-3">
-                <div class="flex-1 overflow-hidden">
-                    <div>
-                        <span class="font-bold text-red-300 cursor-pointer hover:underline">User</span>
-                        <span class="font-bold text-gray-400 text-xs">11:37</span>
-                    </div>
-                    <p class="text-white leading-normal">Discord is awesome!</p>
-                </div>
-            </div>
-            <!-- A message -->
 
-            <!-- A message -->
-            <div class="border-b border-gray-600 py-3 flex items-start mb-4 text-sm">
-                <img src="https://cdn.discordapp.com/embed/avatars/2.png" class="cursor-pointer w-10 h-10 rounded-3xl mr-3">
-                <div class="flex-1 overflow-hidden">
-                    <div>
-                        <span class="font-bold text-red-300 cursor-pointer hover:underline">User</span>
-                        <span class="font-bold text-gray-400 text-xs">11:55</span>
-                    </div>
-                    <p class="text-white leading-normal">Discord is awesome!</p>
-                </div>
-            </div>
-            <!-- A message -->
-            <!-- A message -->
-            <div class="border-b border-gray-600 py-3 flex items-start mb-4 text-sm">
-                <img src="https://cdn.discordapp.com/embed/avatars/3.png" class="cursor-pointer w-10 h-10 rounded-3xl mr-3">
-                <div class="flex-1 overflow-hidden">
-                    <div>
-                        <span class="font-bold text-red-300 cursor-pointer hover:underline">User</span>
-                        <span class="font-bold text-gray-400 text-xs">11:59</span>
-                    </div>
-                    <p class="text-white leading-normal">Discord is awesome!</p>
-                </div>
-            </div>
-            <!-- A message -->
             <!-- A message -->
             <div class="border-b border-gray-600 py-3 flex items-start mb-4 text-sm">
                 <img src="https://cdn.discordapp.com/embed/avatars/4.png" class="cursor-pointer w-10 h-10 rounded-3xl mr-3">
