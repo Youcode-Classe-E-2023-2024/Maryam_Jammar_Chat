@@ -5,10 +5,11 @@ Ce projet a été développé dans le cadre de la mission finale avec Avito. L'o
 
 # Use Case Diagram
 
-!(C:\xampp\htdocs\Maryam_Jammar_Chat\modelistaion\usecase_diagram.png)
+![usecase](C:\xampp\htdocs\Maryam_Jammar_Chat\modelistaion\usecase_diagram.png)
+
 
 # Modèle Conceptuel de Données (MCD)
-!(C:\xampp\htdocs\Maryam_Jammar_Chat\modelistaion\mcd.png)
+![mcd](C:\xampp\htdocs\Maryam_Jammar_Chat\modelistaion\mcd.png)
 
 
 ## Fonctionnalités
