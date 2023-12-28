@@ -5,11 +5,10 @@ Ce projet a été développé dans le cadre de la mission finale avec Avito. L'o
 
 # Use Case Diagram
 
-![usecase](C:\xampp\htdocs\Maryam_Jammar_Chat\modelistaion\usecase_diagram.png)
-
+![usecase_diagram](https://github.com/Youcode-Classe-E-2023-2024/Maryam_Jammar_Chat/assets/132862036/8ecc25db-e119-4637-b54a-d82796da700f)
 
 # Modèle Conceptuel de Données (MCD)
-![mcd](C:\xampp\htdocs\Maryam_Jammar_Chat\modelistaion\mcd.png)
+![mcd](https://github.com/Youcode-Classe-E-2023-2024/Maryam_Jammar_Chat/assets/132862036/e9febb6d-ab3e-4b32-bd60-76e504b7cbf7)
 
 
 ## Fonctionnalités
